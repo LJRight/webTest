@@ -27,7 +27,7 @@
       "react-app/jest"
     ]
   },
-  "homepage": "https://username.github.io/webTest",
+  "homepage": "https://ljright.github.io/webTest",
   "browserslist": {
     "production": [
       ">0.2%",
