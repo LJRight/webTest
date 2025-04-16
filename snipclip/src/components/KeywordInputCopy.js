@@ -6,7 +6,7 @@ import { FormContainer, InputField, KeywordInputForm, TextElement, DownloadButto
 import ProgressBarComponent from "./ProgressBarComponent";
 import axios from "axios";
 
-const KeywordInput = () => {
+const KeywordInputCopy = () => {
   const [keyword, setKeyword] = useState("");
   const [progress, setProgress] = useState(0);
   const [progressText, setProgressText] = useState("");
@@ -128,4 +128,4 @@ const KeywordInput = () => {
   );
 };
 
-export default KeywordInput;
+export default KeywordInputCopy;
