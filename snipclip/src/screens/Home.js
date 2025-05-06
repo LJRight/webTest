@@ -2,7 +2,6 @@ import React from 'react'
 import { Container } from '../components/Styles/Container/Container.style'
 import { Header, MainHeader } from '../components/Styles/Header/Header.style'
 import KeywordInput from '../components/KeywordInput'
-import KeywordInputCopy from '../components/KeywordInputCopy'
 
 
 export const Home = () => {
@@ -10,8 +9,7 @@ export const Home = () => {
     <Container>
       <Header>
         <MainHeader>
-          {/* <KeywordInput /> */}
-          <KeywordInputCopy />
+          <KeywordInput />
         </MainHeader>
       </Header>
     </Container>
