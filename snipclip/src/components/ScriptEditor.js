@@ -17,7 +17,7 @@ function ScriptEditor({ value, onChange }) {
         onChange={(e) => onChange(e.target.value)}
         readOnly={!isEditable}
         editable={isEditable}
-        rows={2}
+        rows={4}
         maxLength={maxLength}
       />
       <CharCounter>{value.length} / {maxLength}</CharCounter>

@@ -272,9 +272,9 @@ const KeywordInput = () => {
         aiImageUrl="/example.jpeg"
       /> */}
 
-      <VideoSourceManager
+      {/* <VideoSourceManager
         realResult={realData[0]}
-        aiResult={aiData[0]} />
+        aiResult={aiData[0]} /> */}
     </KeywordInputForm>
 
   );

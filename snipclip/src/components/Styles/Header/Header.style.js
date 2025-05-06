@@ -24,7 +24,8 @@ export const Header = styled.section`
         background-size: 100vw 200px;
         background-color: #3C404B;
     }
-  border: solid red 2px;
+
+  border: solid blue 2px;
 `
 
 export const MainHeader = styled.div`
@@ -32,7 +33,7 @@ export const MainHeader = styled.div`
     z-index: 1;
     margin: 0 auto;
     width: 100%;
-    max-width: 1000px;
+    max-width: 1200px;
     background-color: transparent;
     display: flex;
     justify-content: center;
@@ -46,5 +47,5 @@ export const MainHeader = styled.div`
     padding: 10px;
   }
 
-  border: 2px solid blue;
+  /* border: 2px solid blue; */
 `

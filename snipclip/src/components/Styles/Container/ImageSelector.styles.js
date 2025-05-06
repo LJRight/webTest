@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 
 export const SelectorWrapper = styled.div`
+  width: 40%;
   display: flex;
   justify-content: center;
   gap: 2rem;
   margin: 1px;
+  border: solid pink 3px;
 `;
 
 export const ImageBlock = styled.div`

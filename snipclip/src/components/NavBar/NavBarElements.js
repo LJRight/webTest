@@ -5,7 +5,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 
 function NavBarElements() {
   return (
-    <Navbar collapseOnSelect expand="lg" className="bg-body-secondary" fixed='top'>
+    <Navbar collapseOnSelect expand="lg" className="bg-body-secondary" sticky='top'>
       <Container>
         <Navbar.Brand href="/">
           <img

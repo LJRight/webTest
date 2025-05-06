@@ -21,6 +21,8 @@ export const KeywordInputForm = styled.div`
   min-height: 300px;
   transition: all 0.3s ease;
   height: ${(props) => (props.isProcessing ? '500px' : 'auto')};
+
+  /* border : solid yellow 3px; */
 `;
 
 export const TextElement = styled.h1`
@@ -49,13 +51,6 @@ export const ProgressBarContainer = styled.div`
   border-radius: 5px;
   margin-top: 20px;
 `;
-
-// export const ProgressBar = styled.div`
-//   height: 20px;
-//   background-color: green;
-//   width: ${(props) => props.progress}%;  // 진행 상태에 따라 width를 동적으로 변경
-//   border-radius: 5px;
-// `;
 
 export const DownloadButton = styled.button`
 

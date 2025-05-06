@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  width: 100%;
+  width: 60%;
   padding: 10px;
   background-color: transparent;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
+  border: solid purple 3px;
 `;
 
 export const TextField = styled.textarea`
