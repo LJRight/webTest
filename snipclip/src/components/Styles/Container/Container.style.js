@@ -5,5 +5,5 @@ export const Container = styled.div`
     min-height: 100%;
     background-color: lightgray;
     color: white;
-    border: solid red 2px;
+    /* border: solid red 2px; */
 `

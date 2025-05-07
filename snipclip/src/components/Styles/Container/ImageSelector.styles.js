@@ -1,19 +1,22 @@
 import styled from 'styled-components';
 
 export const SelectorWrapper = styled.div`
-  width: 40%;
   display: flex;
+  flex: 4;
   justify-content: center;
-  gap: 2rem;
-  margin: 1px;
-  border: solid pink 3px;
+  align-items: flex-start;
+  gap: 1rem;
+  max-width: 100%;      
+  box-sizing: border-box;
 `;
+
 
 export const ImageBlock = styled.div`
   text-align: center;
 `;
 
 export const ClickableImage = styled.img`
+  width: 100%;
   height: 150px;
   cursor: pointer;
   border-radius: 6px;

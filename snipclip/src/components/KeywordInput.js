@@ -6,6 +6,7 @@ import { FormContainer, InputField, KeywordInputForm, TextElement, DownloadButto
 import ProgressBarComponent from "./ProgressBarComponent";
 import axios from "axios";
 import VideoSourceManager from "./VideoSourceManager";
+
 import realData from '../mock/realResult.json';
 import aiData from '../mock/aiResult.json';
 
@@ -17,9 +18,8 @@ const KeywordInput = () => {
   const [isDownloadable, setIsDownloadable] = useState(false);
   const [videoUrl, setVideoUrl] = useState(null);
 
-  const [selectedImageType, setSelectedImageType] = useState();
-  const [scriptText, setScriptText] = useState("리액트");
-
+  const [realResultData, setRealResultData] = useState(null);
+  const [aiResultData, setAiResultData] = useState(null);
 
 
   const handleInputChange = (e) => {
@@ -69,9 +69,6 @@ const KeywordInput = () => {
       // 3. 이미지 매칭(일단 POST로 호출 이후 job id 를 받아와서 주기적으로 GET으로 상태 확인)
       console.log("[3/4] 이미지 매칭 요청 중...");
 
-      const startTimeReal = Date.now();
-      const startTimeAI = Date.now();
-
       const readlImageJob = await axios.post("/image_real", {
         query: keyword,
         script: scriptRes.data,
@@ -84,51 +81,14 @@ const KeywordInput = () => {
       const jobId_ai = aiImageJob.data.job_id;
       const jobId_real = readlImageJob.data.job_id;
 
-      const startTime = Date.now();
-
-      // let stopTimer = false;
-
-      // 1초마다 진행 시간 텍스트 업데이트
-      // const timerInterval = setInterval(() => {
-      //   const now = Date.now();
-      //   const elapsed = Math.floor((now - startTime) / 1000);
-      //   const minutes = Math.floor(elapsed / 60);
-      //   const seconds = elapsed % 60;
-      //   setProgressText(`이미지 매칭 중... (작업 대기 ${minutes}분 ${seconds}초)`);
-      //   if (stopTimer) clearInterval(timerInterval);
-      // }, 1000);
-
-      // // 10초마다 상태 확인
-      // let status = "PENDING";
-      // let imageResult = null;
-      // while (status !== "SUCCESS") {
-      //   const statusRes = await axios.get(`/status/${jobId_real}`);
-      //   status = statusRes.data.status;
-
-      //   if (status === "FAILURE") {
-      //     stopTimer = true;
-      //     throw new Error("Image generation failed");
-      //   }
-
-      //   if (status === "SUCCESS") {
-      //     const resultRes = await axios.get(`/result/${jobId_real}`);
-      //     imageResult = resultRes.data.result;
-      //     stopTimer = true;
-      //     break;
-      //   }
-
-      //   await new Promise(resolve => setTimeout(resolve, 10000));  // 10초 대기
-      // }
-
-      ///////////////////////////////////
 
       let realResult = null;
       let aiResult = null;
       let realDone = false;
       let aiDone = false;
-
       let stopTimer = false;
 
+      const startTime = Date.now();
       const timerInterval = setInterval(() => {
         const now = Date.now();
         const elapsed = Math.floor((now - startTime) / 1000);
@@ -147,14 +107,10 @@ const KeywordInput = () => {
           } else if (statusRes.data.status === "SUCCESS") {
             const resultRes = await axios.get(`/result/${jobId_real}`);
             realResult = resultRes.data.result;
+            setRealResultData(realResult[0])
             realDone = true;
-
-            const elapsed = ((Date.now() - startTimeReal) / 1000).toFixed(2);
-            console.log(`실제 이미지 매칭 완료 (${elapsed}초)`);
-            console.log(realResult);
           }
         }
-
         if (!aiDone) {
           const statusRes = await axios.get(`/status/${jobId_ai}`);
           if (statusRes.data.status === "FAILURE") {
@@ -162,14 +118,10 @@ const KeywordInput = () => {
           } else if (statusRes.data.status === "SUCCESS") {
             const resultRes = await axios.get(`/result/${jobId_ai}`);
             aiResult = resultRes.data.result;
+            setAiResultData(aiResult[0])
             aiDone = true;
-
-            const elapsed = ((Date.now() - startTimeAI) / 1000).toFixed(2);
-            console.log(`AI 이미지 생성 완료 (${elapsed}초)`);
-            console.log(aiResult);
           }
         }
-
         await new Promise(resolve => setTimeout(resolve, 10000)); // 10초 대기
       }
 
@@ -258,23 +210,20 @@ const KeywordInput = () => {
           <div style={{ marginTop: '10px', color: '#333' }}>{progressText}</div>
         </>
       )}
+
       {isDownloadable && videoUrl && (
         <DownloadButton onClick={handleDownload}>다운로드</DownloadButton>
       )}
 
-
-      {/* <SectionFormatter
-        scriptValue={scriptText}
-        onScriptChange={setScriptText}
-        imageType={selectedImageType}
-        onImageTypeChange={(e) => setSelectedImageType(e.target.value)}
-        realImageUrl="/example.jpeg"
-        aiImageUrl="/example.jpeg"
-      /> */}
-
-      {/* <VideoSourceManager
-        realResult={realData[0]}
-        aiResult={aiData[0]} /> */}
+      {realResultData && aiResultData && (
+        <VideoSourceManager
+          realResult={realResultData}
+          aiResult={aiResultData}
+          onSubmit={(finalData) => {
+            console.log("제출된 결과:", finalData); // 🔥 이후 /video API 호출에 사용
+          }}
+        />
+      )}
     </KeywordInputForm>
 
   );

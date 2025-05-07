@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import SectionFormatter from './SectionFormatter';
-import { ManagerContainer } from './Styles/Container/VideoSourceManager.styles';
+import { ManagerContainer, SubmitButton, SubmitButtonWrapper } from './Styles/Container/VideoSourceManager.styles';
 
-function VideoSourceManager({ realResult, aiResult }) {
+function VideoSourceManager({ realResult, aiResult, onSubmit }) {
     const [sections, setSections] = useState(() => {
         const combined = [];
 
@@ -36,19 +36,33 @@ function VideoSourceManager({ realResult, aiResult }) {
     };
 
     return (
-        <ManagerContainer>
-            {sections.map((item, index) => (
-                <SectionFormatter
-                    key={index}
-                    scriptValue={item.script}
-                    onScriptChange={(text) => handleScriptChange(index, text)}
-                    imageType={item.selectedImageType}
-                    onImageTypeChange={(e) => handleImageTypeChange(index, e.target.value)}
-                    realImageUrl={item.realImage}
-                    aiImageUrl={item.aiImage}
-                />
-            ))}
-        </ManagerContainer>
+        <>
+            <ManagerContainer>
+                {sections.map((item, index) => (
+                    <SectionFormatter
+                        index={index}
+                        scriptValue={item.script}
+                        onScriptChange={(text) => handleScriptChange(index, text)}
+                        imageType={item.selectedImageType}
+                        onImageTypeChange={(e) => handleImageTypeChange(index, e.target.value)}
+                        realImageUrl={item.realImage}
+                        aiImageUrl={item.aiImage}
+                    />
+                ))}
+            </ManagerContainer>
+
+            <SubmitButtonWrapper>
+                <SubmitButton onClick={() => {
+                    const result = sections.map(({ script, selectedImageType }) => ({
+                        script,
+                        imageType: selectedImageType === 'real' ? 0 : 1
+                    }));
+                    onSubmit(result);
+                }}>
+                    제출
+                </SubmitButton>
+            </SubmitButtonWrapper>
+        </>
     );
 }
 

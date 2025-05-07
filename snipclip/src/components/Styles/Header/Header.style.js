@@ -25,7 +25,7 @@ export const Header = styled.section`
         background-color: #3C404B;
     }
 
-  border: solid blue 2px;
+  /* border: solid blue 2px; */
 `
 
 export const MainHeader = styled.div`

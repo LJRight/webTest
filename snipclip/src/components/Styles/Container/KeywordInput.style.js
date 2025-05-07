@@ -30,6 +30,7 @@ export const TextElement = styled.h1`
   font-size: 24px;
   margin-bottom: 50px;
 `;
+
 export const FormContainer = styled.div`
   display: flex;
   flex-direction: row;

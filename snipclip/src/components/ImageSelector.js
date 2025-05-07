@@ -9,7 +9,7 @@ import {
   ModalImage,
 } from './Styles/Container/ImageSelector.styles';
 
-function ImageSelector({ realImageUrl, aiImageUrl, selected, onChange }) {
+function ImageSelector({ realImageUrl, aiImageUrl, selected, onChange, groupName }) {
   const [show, setShow] = useState(false);
   const [modalImage, setModalImage] = useState('');
 
@@ -30,7 +30,7 @@ function ImageSelector({ realImageUrl, aiImageUrl, selected, onChange }) {
           <RadioWrapper>
             <Form.Check.Input
               type="radio"
-              name="imageType"
+              name={groupName}
               id="real"
               value="real"
               checked={selected === 'real'}
@@ -49,7 +49,7 @@ function ImageSelector({ realImageUrl, aiImageUrl, selected, onChange }) {
           <RadioWrapper>
             <Form.Check.Input
               type="radio"
-              name="imageType"
+              name={groupName}
               id="ai"
               value="ai"
               checked={selected === 'ai'}

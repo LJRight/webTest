@@ -4,6 +4,7 @@ import ImageSelector from './ImageSelector';
 import { FormatterContainer } from './Styles/Container/SectionFormatter.styles';
 
 function SectionFormatter({
+  index,
   scriptValue,
   onScriptChange,
   imageType,
@@ -19,6 +20,7 @@ function SectionFormatter({
         aiImageUrl={aiImageUrl}
         selected={imageType}
         onChange={onImageTypeChange}
+        groupName={`imageType-${index}`}
       />
     </FormatterContainer>
   );
