@@ -1,9 +1,6 @@
-import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 
-function SubmitButton({ onSubmit }) {
-  const [isLoading, setLoading] = useState(false);
-  
+function SubmitButton({ onSubmit, isLoading, setLoading }) {
   return (
     <Button
       variant="outline-dark"
@@ -14,6 +11,6 @@ function SubmitButton({ onSubmit }) {
       {isLoading ? '동영상 생성 중' : '만들기'}
     </Button>
   );
-  
 }
+
 export default SubmitButton;

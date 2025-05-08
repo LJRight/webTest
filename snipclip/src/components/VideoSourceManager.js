@@ -5,7 +5,6 @@ import { ManagerContainer, SubmitButton, SubmitButtonWrapper } from './Styles/Co
 function VideoSourceManager({ realResult, aiResult, onSubmit }) {
     const [sections, setSections] = useState(() => {
         const combined = [];
-
         for (let i = 0; i < 5; i++) {
             const text = `${realResult.section[i * 2]} ${realResult.section[i * 2 + 1]}`;
             combined.push({
@@ -15,10 +14,8 @@ function VideoSourceManager({ realResult, aiResult, onSubmit }) {
                 selectedImageType: 'real',
             });
         }
-
         return combined;
     });
-
     const handleScriptChange = (index, newScript) => {
         setSections(prev =>
             prev.map((item, i) =>
@@ -26,7 +23,6 @@ function VideoSourceManager({ realResult, aiResult, onSubmit }) {
             )
         );
     };
-
     const handleImageTypeChange = (index, newType) => {
         setSections(prev =>
             prev.map((item, i) =>
@@ -34,7 +30,6 @@ function VideoSourceManager({ realResult, aiResult, onSubmit }) {
             )
         );
     };
-
     return (
         <>
             <ManagerContainer>
@@ -59,7 +54,7 @@ function VideoSourceManager({ realResult, aiResult, onSubmit }) {
                     }));
                     onSubmit(result);
                 }}>
-                    제출
+                    영상 생성
                 </SubmitButton>
             </SubmitButtonWrapper>
         </>

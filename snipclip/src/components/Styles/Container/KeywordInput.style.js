@@ -54,6 +54,20 @@ export const ProgressBarContainer = styled.div`
 `;
 
 export const DownloadButton = styled.button`
-
-  margin-top: 10px;
-`
+  margin-top: 20px;
+  padding: 4px 10px;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  &:hover {
+    background-color: #218838;
+  }
+  &:active {
+    background-color: #1e7e34;
+  }
+`;
